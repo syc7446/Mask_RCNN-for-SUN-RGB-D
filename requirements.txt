@@ -9,3 +9,4 @@ keras
 opencv-python
 h5py
 imgaug
+#pylibfreenect2
