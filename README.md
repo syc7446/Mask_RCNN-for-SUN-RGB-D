@@ -90,3 +90,7 @@ The training schedule, learning rate, and other parameters should be set in `sam
 * **Multi-threading:** Not alloved as it mostly slows down the whole system, because more resources are spent on administrative work, than on execution itself.
 * **Learning Rate:** The paper uses a learning rate of 0.02, here they are changed to 0.001 for a better convergence without significant 
 decrease in speed.
+
+
+## License
+Copyright (c) 2018 Ekaterina Lyapina. Contact me for commercial use (or rather any use that is not academic research) (email: ec16513 at qmul.ac.uk). Free for research use, as long as proper attribution is given and this copyright notice is retained.
