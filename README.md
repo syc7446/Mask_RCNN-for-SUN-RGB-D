@@ -65,6 +65,17 @@ This notebooks uses Kinect v2 color channel for a video streaming with an image 
 * [Image_segmentation_video_stream.ipynb](Image_segmentation_video_stream.ipynb)
 This notebooks uses local camera to a video stream with an image segmentation on top.
 
+### Steps to run the COCO demo
+This is tested on Ubuntu 18.04.
+1. Download the weight file of `mask_rcnn_coco.h5` from [here](https://github.com/matterport/Mask_RCNN/releases).
+2. To avoid the error of `No module named 'mrcnn'`, change `ROOT_DIR = os.path.abspath("../../")` to `ROOT_DIR = os.path.abspath(".")` in the `coco.py` file.
+3. Run the demo once using `python3 samples/coco/coco.py evaluate --dataset=/path/to/Mast_RCNN/datasets --model=last` and you will get an error. But this will generate `logs` folder.
+4. Place `mask_rcnn_coco.h5` in `Mast_RCNN/logs/coco---` that is generated most recently.
+5. Fix the bug in the `model.py` file according to [issue #885](https://github.com/matterport/Mask_RCNN/issues/885). Change from `dir_name = os.path.join(self.model_dir, dir_names[-1])` to `dir_name = os.path.join(self.model_dir, dir_names[-2])`. Note that after you run it for the first time, you will face this error almost everytime you run it. Make sure you move `mask_rcnn_coco.h5` to the right file in the `Mast_RCNN/logs/` directory.
+6. You need to download COCO images/annotations from [here](http://cocodataset.org/#download). Then, place the image folder (e.g., `val2014`) in the `Mast_RCNN/datasets` directory and place the annotation file (e.g., `instances_minival2014.json`) in the `Mast_RCNN/datasets/annotations` directory. You may have to chnage the file name of `instances_val2014.json` to `instances_minival2014.json`.
+7. When facing the error of `FileNotFoundError: [Errno 2] No such file or directory: '/path/to/Mask_RCNN/datasets/annotations/instances_minival2014.json'`, refer to [issue #185](https://github.com/matterport/Mask_RCNN/issues/185).
+8. Everything should be good to go. Enjoy!
+
 ![Example streaming](assets/Segmentation_stream.png)
 
 # Training using pre-trained MS COCO weights
